@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pehla Nasha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 id="question" style="font-size: 2rem; margin-top: 10px; font-family: 'Pacifico', cursive;">Hey my Iktara</h1>
+        <h1 id="message2" style="display: none; font-size: 2rem; font-family: 'Pacifico', cursive;">This is for you</h1>
+        <p id="message" style="font-size: 1.5rem; margin-top: 80px; display: none; font-family: 'Pacifico', cursive;">Tum me aur 2 cup bournvita</p>
+        <div class="flower">
+            <img id="flowerImg" src="tulips have my heart.jpg" alt="Closed Flower">
+        </div>
+        <button id="playButton" style="font-size: 1.2rem;">Play Song </button>
+        <button id="stopButton" style="display: none; font-size: 1.2rem;">Stop Song </button>
+        <button id="fallButton" style="font-size: 1.2rem;">Make it Fall!</button>
+    </div>
+
+    <audio id="loveSong" src="WhatsApp Audio 2025-02-01 at 21.53.09.mpeg"></audio>
+
+    <script>
+        document.getElementById("playButton").addEventListener("click", function() {
+            let flower = document.getElementById("flowerImg");
+            let song = document.getElementById("loveSong");
+            let playButton = document.getElementById("playButton");
+            let stopButton = document.getElementById("stopButton");
+            let question = document.getElementById("question");
+            let message = document.getElementById("message");
+            let message2 = document.getElementById("message2");
+
+            // Change the image to an open flower
+            flower.src = "tulips have my heart.jpg"; // Replace with an open flower image
+            flower.style.transform = "scale(1.2)";
+
+            // Play the song
+            song.play();
+
+            // Hide question and show message
+            question.style.display = "none";
+            message2.style.display = "block";
+            message.style.display = "block";
+
+            // Hide play button and show stop button
+            playButton.style.display = "none";
+            stopButton.style.display = "block";
+        });
+
+        document.getElementById("stopButton").addEventListener("click", function() {
+            let song = document.getElementById("loveSong");
+            let playButton = document.getElementById("playButton");
+            let stopButton = document.getElementById("stopButton");
+            let flower = document.getElementById("flowerImg");
+            let question = document.getElementById("question");
+            let message = document.getElementById("message");
+            let message2 = document.getElementById("message2");
+
+            // Stop the song
+            song.pause();
+            song.currentTime = 0;
+
+            // Reset flower image
+            flower.src = "tulips have my heart.jpg"; // Replace with a closed flower image
+            flower.style.transform = "scale(1)";
+
+            // Hide message and show question
+            message.style.display = "none";
+            message2.style.display = "none";
+            question.style.display = "block";
+
+            // Hide stop button and show play button
+            stopButton.style.display = "none";
+            playButton.style.display = "block";
+        });
+
+        document.getElementById("fallButton").addEventListener("click", function() {
+            // Create a function to generate falling kisses and flowers
+            function generateFallingElements() {
+                for (let i = 0; i < 50; i++) {
+                    let element = document.createElement("div");
+                    element.className = "falling-element";
+                    element.style.top = Math.random() * 100 + "%";
+                    element.style.left = Math.random() * 100 + "%";
+                    element.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+                    element.style.animationDuration = Math.random() * 5 + 3 + "s"; // Adjusted for better visibility
+                    element.style.animationDelay = Math.random() * 2 + "s";
+                    element.innerHTML = Math.random() < 0.5 ? "💋" : "🌸"; // Randomly choose between kiss and flower
+                    element.style.animationName = "fall"; // Add animation name
+                    element.style.position = "absolute"; // Add position absolute
+                    document.body.appendChild(element);
+                }
+            }
+
+            // Call the function to generate falling elements
+            generateFallingElements();
+        });
+    </script>
+</body>
+</html>
